@@ -1,0 +1,398 @@
+{
+  "fetchedAt": "2026-08-25T07:48:12.521Z",
+  "categories": [
+    {
+      "id": 86,
+      "name": "User Testing",
+      "slug": "user-testing",
+      "count": 4
+    },
+    {
+      "id": 85,
+      "name": "UX Laws",
+      "slug": "ux-laws",
+      "count": 4
+    },
+    {
+      "id": 51,
+      "name": "Accessibility",
+      "slug": "accessibility",
+      "count": 3
+    },
+    {
+      "id": 12,
+      "name": "Design Process",
+      "slug": "design-process",
+      "count": 3
+    },
+    {
+      "id": 10,
+      "name": "Typography",
+      "slug": "typography",
+      "count": 2
+    },
+    {
+      "id": 60,
+      "name": "User Behavior",
+      "slug": "user-behavior",
+      "count": 2
+    },
+    {
+      "id": 13,
+      "name": "UX Research",
+      "slug": "ux-research",
+      "count": 2
+    },
+    {
+      "id": 14,
+      "name": "Visual & UI Design",
+      "slug": "visual-ui-design",
+      "count": 2
+    },
+    {
+      "id": 81,
+      "name": "Design Documentation",
+      "slug": "design-documentation",
+      "count": 1
+    },
+    {
+      "id": 11,
+      "name": "Usability",
+      "slug": "usability",
+      "count": 1
+    },
+    {
+      "id": 120,
+      "name": "UX Career",
+      "slug": "ux-career",
+      "count": 1
+    }
+  ],
+  "hints": [
+    {
+      "id": 1901,
+      "slug": "checklist-for-preparing-for-a-ux-interview",
+      "link": "https://uxhints.com/ux-career/checklist-for-preparing-for-a-ux-interview/",
+      "date": "2023-10-07T14:18:06",
+      "modified": "2023-10-09T08:48:45",
+      "title": "Checklist for preparing for a UX Interview",
+      "excerpt": "Are you preparing for a UX or tech job search? Below, you will find a strategic step-by-step checklist to help you optimize your LinkedIn profile, review your resume, showcase your best work, and prepare for interviews. From crafting an impactful headline on LinkedIn to creating a compelling pitch summarizing your experience, this checklist provides actionable […]",
+      "contentMarkdown": "Are you preparing for a UX or tech job search? Below, you will find a strategic step-by-step checklist to help you optimize your LinkedIn profile, review your resume, showcase your best work, and prepare for interviews. From crafting an impactful headline on LinkedIn to creating a compelling pitch summarizing your experience, this checklist provides actionable tips to stand out in the competitive job market. By following these steps and staying determined, you’ll be well-prepared to land your dream tech job. Good luck!",
+      "categoryIds": [
+        120
+      ]
+    },
+    {
+      "id": 1877,
+      "slug": "occams-razor-law-in-ux-design",
+      "link": "https://uxhints.com/ux-laws/occams-razor-law-in-ux-design/",
+      "date": "2023-05-02T15:25:57",
+      "modified": "2023-05-02T19:46:33",
+      "title": "Occam’s Razor Law in UX Design",
+      "excerpt": "Occam’s Razor is a problem-solving principle stating that the simplest explanation or solution, with the fewest assumptions, is often the most likely to be correct. The law is named after the 14th-century English Franciscan friar and philosopher William of Ockham. Although William of Ockham never explicitly formulated the principle, he frequently employed a similar idea […]",
+      "contentMarkdown": "Occam’s Razor is a problem-solving principle stating that the simplest explanation or solution, with the fewest assumptions, is often the most likely to be correct. The law is named after the 14th-century English Franciscan friar and philosopher William of Ockham. Although William of Ockham never explicitly formulated the principle, he frequently employed a similar idea in his philosophical and theological work. The concept can be traced back to the idea of “pluralitas non est ponenda sine necessitate,” which translates to “plurality should not be posited without necessity.” This principle encourages the selection of the simplest explanation with the fewest assumptions when faced with competing hypotheses.",
+      "categoryIds": [
+        85
+      ]
+    },
+    {
+      "id": 1858,
+      "slug": "design-principles-in-ui",
+      "link": "https://uxhints.com/visual-ui-design/design-principles-in-ui/",
+      "date": "2021-10-21T16:06:37",
+      "modified": "2021-10-21T16:09:57",
+      "title": "Design Principles in UI",
+      "excerpt": "Design principles are what UX/UI designers use intentionally or subconsciously in their day-to-day workflow. These are the fundamental rules that help achieve great results in the visual, user interface, graphic, or any other kind of design. These rules are based on the Gestalt principles created by psychologists in the early 20th century in Austria and […]",
+      "contentMarkdown": "Design principles are what UX/UI designers use intentionally or subconsciously in their day-to-day workflow. These are the fundamental rules that help achieve great results in the visual, user interface, graphic, or any other kind of design. These rules are based on the Gestalt principles created by psychologists in the early 20th century in Austria and Germany.",
+      "categoryIds": [
+        14
+      ]
+    },
+    {
+      "id": 1774,
+      "slug": "ux-metric-system-usability-scale-sus",
+      "link": "https://uxhints.com/user-testing/ux-metric-system-usability-scale-sus/",
+      "date": "2021-02-20T09:57:14",
+      "modified": "2021-10-12T12:03:22",
+      "title": "UX Metric – System Usability Scale (SUS)",
+      "excerpt": "The System Usability Scale (SUS) was created by John Brooke who, in 1986, created this ‘quick and dirty’ usability scale to evaluate different kinds of systems. The SUS has been utilized for almost 30 years and has become a reliable method of evaluating the usability of systems compared to industry standards.",
+      "contentMarkdown": "The System Usability Scale (SUS) was created by John Brooke who, in 1986, created this ‘quick and dirty’ usability scale to evaluate different kinds of systems. The SUS has been utilized for almost 30 years and has become a reliable method of evaluating the usability of systems compared to industry standards.",
+      "categoryIds": [
+        86
+      ]
+    },
+    {
+      "id": 1738,
+      "slug": "ux-metric-single-ease-question-seq",
+      "link": "https://uxhints.com/user-testing/ux-metric-single-ease-question-seq/",
+      "date": "2021-01-18T12:59:39",
+      "modified": "2021-01-18T13:05:08",
+      "title": "UX Metric – Single Ease Question (SEQ)",
+      "excerpt": "SEQ is a popular UX metric used by researchers during usability studies to assess the complexity and usability of a task given to a user. It allows to get more qualitative data about a task and solicit information from users about how they feel about performing the task.",
+      "contentMarkdown": "SEQ is a popular UX metric used by researchers during usability studies to assess the complexity and usability of a task given to a user. It allows to get more qualitative data about a task and solicit information from users about how they feel about performing the task.",
+      "categoryIds": [
+        86
+      ]
+    },
+    {
+      "id": 1722,
+      "slug": "ux-metric-net-promoter-score-nps",
+      "link": "https://uxhints.com/user-testing/ux-metric-net-promoter-score-nps/",
+      "date": "2020-11-14T10:26:30",
+      "modified": "2021-01-18T13:32:42",
+      "title": "UX Metric – Net Promoter Score (NPS)",
+      "excerpt": "Net Promoter Score is a metric frequently used by product and design teams to quantify customer experience. Learn more about what it’s used for, when to use it and how to calculate NPS.",
+      "contentMarkdown": "Net Promoter Score is a metric frequently used by product and design teams to quantify customer experience. Learn more about what it’s used for, when to use it and how to calculate NPS.",
+      "categoryIds": [
+        86
+      ]
+    },
+    {
+      "id": 1684,
+      "slug": "baby-duck-syndrome-in-ux",
+      "link": "https://uxhints.com/user-behavior/baby-duck-syndrome-in-ux/",
+      "date": "2020-09-17T17:38:45",
+      "modified": "2020-10-06T19:24:31",
+      "title": "Baby Duck Syndrome in UX",
+      "excerpt": "How to explain it when your users reject any new significant changes in UI? There’s an answer to it: Baby Duck Syndrome. The users tend to stick with the current UI and if there is something new unfamiliar to them, they will likely judge it negatively. It’s also called the Phenomenon of Imprinting and was […]",
+      "contentMarkdown": "How to explain it when your users reject any new significant changes in UI? There’s an answer to it: Baby Duck Syndrome. The users tend to stick with the current UI and if there is something new unfamiliar to them, they will likely judge it negatively. It’s also called the Phenomenon of Imprinting and was studied in-depth by an ethologist Konrad Lorenz.",
+      "categoryIds": [
+        60
+      ]
+    },
+    {
+      "id": 1664,
+      "slug": "s-m-a-r-t-goals-framework-for-ux-projects",
+      "link": "https://uxhints.com/design-process/s-m-a-r-t-goals-framework-for-ux-projects/",
+      "date": "2020-07-27T18:04:37",
+      "modified": "2020-07-27T22:35:46",
+      "title": "S.M.A.R.T. Goals Framework for UX Projects",
+      "excerpt": "S.M.A.R.T. goals framework is a great technique that allows you to define clear, specific, and measurable goals and potential outcomes in your UX projects. This methodology can be applied to different domain areas, and for UX design it’s vital for understanding ROI and impact of design.",
+      "contentMarkdown": "S.M.A.R.T. goals framework is a great technique that allows you to define clear, specific, and measurable goals and potential outcomes in your UX projects. This methodology can be applied to different domain areas, and for UX design it’s vital for understanding ROI and impact of design.",
+      "categoryIds": [
+        12
+      ]
+    },
+    {
+      "id": 1482,
+      "slug": "communicate-design-with-developers-checklist",
+      "link": "https://uxhints.com/design-documentation/communicate-design-with-developers-checklist/",
+      "date": "2020-05-11T18:27:02",
+      "modified": "2020-05-19T13:30:59",
+      "title": "Communicate Design with Developers – Checklist",
+      "excerpt": "",
+      "contentMarkdown": "",
+      "categoryIds": [
+        81
+      ]
+    },
+    {
+      "id": 1170,
+      "slug": "typography-anatomy",
+      "link": "https://uxhints.com/typography/typography-anatomy/",
+      "date": "2020-03-09T14:52:42",
+      "modified": "2020-05-19T12:52:43",
+      "title": "Typography Anatomy",
+      "excerpt": "All important typography terms and definitions for graphic and product designers in one place.",
+      "contentMarkdown": "All important typography terms and definitions for graphic and product designers in one place.",
+      "categoryIds": [
+        10
+      ]
+    },
+    {
+      "id": 1042,
+      "slug": "wcag-2-1-map",
+      "link": "https://uxhints.com/accessibility/wcag-2-1-map/",
+      "date": "2020-02-10T17:03:00",
+      "modified": "2020-05-19T07:49:53",
+      "title": "Accessibility Guidelines WCAG 2.1 Map",
+      "excerpt": "Web Content Accessibility Guidelines are created by World Wide Consortium (W3C) with the purpose of providing a set of standards for making the Internet more accessible by improving the user experience for people with disabilities. The recent version WCAG 2.1 was released in June 2018.",
+      "contentMarkdown": "Web Content Accessibility Guidelines are created by World Wide Consortium (W3C) with the purpose of providing a set of standards for making the Internet more accessible by improving the user experience for people with disabilities. The recent version WCAG 2.1 was released in June 2018.",
+      "categoryIds": [
+        51
+      ]
+    },
+    {
+      "id": 1011,
+      "slug": "law-of-the-hammer",
+      "link": "https://uxhints.com/ux-laws/law-of-the-hammer/",
+      "date": "2020-02-05T20:19:15",
+      "modified": "2020-05-29T12:35:38",
+      "title": "Law of the Hammer in UX Design",
+      "excerpt": "Also known as the law of the instrument, Maslow’s hammer, or the golden hammer. Was created by Abraham Maslow in 1966. This is a cognitive bias that represents the effect of over-reliance on a familiar tool. The examples of the law of the hammer can be met at any point in the design process where […]",
+      "contentMarkdown": "Also known as the law of the instrument, Maslow’s hammer, or the golden hammer. Was created by Abraham Maslow in 1966. This is a [cognitive bias](https://uxhints.com/tag/cognitive-biases/) that represents the effect of over-reliance on a familiar tool. The examples of the law of the hammer can be met at any point in the design process where the designers tend to try to solve a problem using the same tool or sets of tools over and over again. In a sense, it can be treated as an opposite side of consistency.",
+      "categoryIds": [
+        85
+      ]
+    },
+    {
+      "id": 986,
+      "slug": "ux-metrics-heart-framework",
+      "link": "https://uxhints.com/user-testing/ux-metrics-heart-framework/",
+      "date": "2020-01-27T19:47:40",
+      "modified": "2020-06-16T17:24:50",
+      "title": "HEART Framework – UX Metrics Map",
+      "excerpt": "HEART framework from Google is a helpful tool for measuring the success of design solutions. It helps set up a user-centric approach on a team and classify UX metrics into 5 categories: happiness, engagement, adoption, retention and task success. The framework is widely used by many product teams and companies and allows them to leverage […]",
+      "contentMarkdown": "HEART framework from Google is a helpful tool for measuring the success of design solutions. It helps set up a user-centric approach on a team and classify UX metrics into 5 categories: happiness, engagement, adoption, retention and task success. The framework is widely used by many product teams and companies and allows them to leverage quantitative and qualitative user data in the design process.",
+      "categoryIds": [
+        86
+      ]
+    },
+    {
+      "id": 892,
+      "slug": "cognitive-biases-in-ux-part-1",
+      "link": "https://uxhints.com/user-behavior/cognitive-biases-in-ux-part-1/",
+      "date": "2019-12-14T10:58:51",
+      "modified": "2020-05-18T19:56:57",
+      "title": "Cognitive Biases in User Behavior (Part 1)",
+      "excerpt": "Understanding confirmation biases is crucial in user experience design. These patterns from human psychology and behavior can get in the way of making rational decisions and impede successful outcomes both in the design process and in user interactions. If you learn how to spot different biases you will be able to leverage them successfully in […]",
+      "contentMarkdown": "Understanding confirmation biases is crucial in user experience design. These patterns from human psychology and behavior can get in the way of making rational decisions and impede successful outcomes both in the design process and in user interactions. If you learn how to spot different biases you will be able to leverage them successfully in your design work. This is the 1st part of a cheat sheet series telling about the most popular cognitive biases.",
+      "categoryIds": [
+        60
+      ]
+    },
+    {
+      "id": 864,
+      "slug": "conways-law",
+      "link": "https://uxhints.com/ux-laws/conways-law/",
+      "date": "2019-11-07T18:02:30",
+      "modified": "2020-05-29T12:37:07",
+      "title": "Conway’s Law in Product Design",
+      "excerpt": "Conway’s Law was introduced in 1967 by a programmer Melvin Conway. The law represents a concept originating from the software world but not constrained by any specific domain. Conway’s law was not intended as a joke but as a valid sociological observation. It states the fact that two software modules X and Y cannot interface […]",
+      "contentMarkdown": "Conway’s Law was introduced in 1967 by a programmer Melvin Conway. The law represents a concept originating from the software world but not constrained by any specific domain. Conway’s law was not intended as a joke but as a valid sociological observation. It states the fact that two software modules X and Y cannot interface correctly with each other unless the designer and implementer of X communicates with the designer and implementer of Y.",
+      "categoryIds": [
+        85
+      ]
+    },
+    {
+      "id": 800,
+      "slug": "accessibility-principles",
+      "link": "https://uxhints.com/accessibility/accessibility-principles/",
+      "date": "2019-10-15T21:12:27",
+      "modified": "2020-05-18T19:46:37",
+      "title": "Web Accessibility Principles (POUR)",
+      "excerpt": "The web industry-standard guidelines for accessibility are grounded in 4 key principles: Perceivable, Operable, Understandable, and Robust – POUR.",
+      "contentMarkdown": "The web industry-standard guidelines for accessibility are grounded in 4 key principles: Perceivable, Operable, Understandable, and Robust – POUR.",
+      "categoryIds": [
+        51
+      ]
+    },
+    {
+      "id": 785,
+      "slug": "why-design-for-accessibility",
+      "link": "https://uxhints.com/accessibility/why-design-for-accessibility/",
+      "date": "2019-10-11T13:16:38",
+      "modified": "2020-05-18T19:43:26",
+      "title": "Why Design for Accessibility?",
+      "excerpt": "When we think about the design process, we should always consider one important aspect of user experience – accessibility. Every 4th human around us likely has some disabilities, therefore it’s fundamentally important to take these people into account as we design our products, websites or services. Accessibility is not a feature, it’s a mind-set.",
+      "contentMarkdown": "When we think about the design process, we should always consider one important aspect of user experience – accessibility. Every 4th human around us likely has some disabilities, therefore it’s fundamentally important to take these people into account as we design our products, websites or services. Accessibility is not a feature, it’s a mind-set.",
+      "categoryIds": [
+        51
+      ]
+    },
+    {
+      "id": 516,
+      "slug": "fitts-law-ux-design",
+      "link": "https://uxhints.com/ux-laws/fitts-law-ux-design/",
+      "date": "2018-11-30T21:39:04",
+      "modified": "2020-05-29T12:36:43",
+      "title": "Fitts’s Law in UX Design",
+      "excerpt": "Fitts’s Law was introduced by a psychologist Paul Fitts in 1954. The law has a big importance in human-computer interaction and defines the correlation between a cursor movement or a touch gesture and an interface element.",
+      "contentMarkdown": "Fitts’s Law was introduced by a psychologist Paul Fitts in 1954. The law has a big importance in human-computer interaction and defines the correlation between a cursor movement or a touch gesture and an interface element.",
+      "categoryIds": [
+        85
+      ]
+    },
+    {
+      "id": 504,
+      "slug": "google-design-sprint",
+      "link": "https://uxhints.com/design-process/google-design-sprint/",
+      "date": "2018-11-22T21:55:15",
+      "modified": "2020-05-18T19:27:28",
+      "title": "Google Design Sprint",
+      "excerpt": "Google design sprint was invented at GV (formerly Google Ventures). This is a design process that takes 5 days and addresses certain UX problems through defining a problem, brainstorming concepts, prototyping and validating a design solution.",
+      "contentMarkdown": "Google design sprint was invented at [GV](http://www.gv.com/) (formerly Google Ventures). This is a design process that takes 5 days and addresses certain UX problems through defining a problem, brainstorming concepts, prototyping and validating a design solution.",
+      "categoryIds": [
+        12
+      ]
+    },
+    {
+      "id": 275,
+      "slug": "design-thinking-process-diagram",
+      "link": "https://uxhints.com/design-process/design-thinking-process-diagram/",
+      "date": "2018-10-20T22:05:12",
+      "modified": "2020-05-18T19:18:30",
+      "title": "Design Thinking Process Diagram",
+      "excerpt": "Design Thinking is a design methodology that is used for solving design problems using human-centric approach. It allows to tackle ill-defined and complex user problems and provide creative and effective solutions to it through empathizing with the user. Design thinking process is iterative and basically consists of 5 phases: discovery, definition, ideation, prototyping and testing.",
+      "contentMarkdown": "Design Thinking is a design methodology that is used for solving design problems using human-centric approach. It allows to tackle ill-defined and complex user problems and provide creative and effective solutions to it through empathizing with the user. Design thinking process is iterative and basically consists of 5 phases: discovery, definition, ideation, prototyping and testing.",
+      "categoryIds": [
+        12
+      ]
+    },
+    {
+      "id": 272,
+      "slug": "user-empathy-map-template",
+      "link": "https://uxhints.com/ux-research/user-empathy-map-template/",
+      "date": "2018-10-20T17:06:36",
+      "modified": "2020-05-18T19:12:10",
+      "title": "User Empathy Map Template",
+      "excerpt": "User empathy map is a collaborative visualization technique that enables product designers to define and communicate information about the user: what user is thinking, saying, doing and feeling as they interact with a product. This exercise can be done collectively and helps teams better undestand user personas and set the stage for creating customer journey […]",
+      "contentMarkdown": "User empathy map is a collaborative visualization technique that enables product designers to define and communicate information about the user: what user is thinking, saying, doing and feeling as they interact with a product. This exercise can be done collectively and helps teams better undestand user personas and set the stage for creating customer journey maps.",
+      "categoryIds": [
+        13
+      ]
+    },
+    {
+      "id": 263,
+      "slug": "gestalt-principles",
+      "link": "https://uxhints.com/visual-ui-design/gestalt-principles/",
+      "date": "2018-10-20T06:37:17",
+      "modified": "2020-05-18T19:22:24",
+      "title": "6 Gestalt Principles in UX Design",
+      "excerpt": "Visual grouping principles have been invented by Gestalt psychologists and are based on human’s innate ability to perceive objects as organized patterns and simplify complex compositions.",
+      "contentMarkdown": "Visual grouping principles have been invented by Gestalt psychologists and are based on human’s innate ability to perceive objects as organized patterns and simplify complex compositions.",
+      "categoryIds": [
+        14
+      ]
+    },
+    {
+      "id": 212,
+      "slug": "customer-journey-map-template",
+      "link": "https://uxhints.com/ux-research/customer-journey-map-template/",
+      "date": "2018-10-14T03:13:13",
+      "modified": "2020-03-18T18:49:40",
+      "title": "Customer Journey Map Template",
+      "excerpt": "Customer journey map is a popular UX exercise that allows to discover a lot of insights about users. It depicts a holistic story of user’s experience from initial interaction through engaging with product and becoming a loyal customer. Throughout the journey a designer can reveal more details such as user’s emotional transformation, pain points and […]",
+      "contentMarkdown": "Customer journey map is a popular UX exercise that allows to discover a lot of insights about users. It depicts a holistic story of user’s experience from initial interaction through engaging with product and becoming a loyal customer. Throughout the journey a designer can reveal more details such as user’s emotional transformation, pain points and UX opportunities.",
+      "categoryIds": [
+        13
+      ]
+    },
+    {
+      "id": 200,
+      "slug": "10-usability-heuristics",
+      "link": "https://uxhints.com/usability/10-usability-heuristics/",
+      "date": "2018-10-14T02:50:03",
+      "modified": "2020-05-18T19:32:09",
+      "title": "10 Usability Heuristics for UX Design",
+      "excerpt": "Usability heuristics are the principles of interaction design created by Jacob Nielsen. These principles are used in usability evaluation to identify any design issues related to user interface.",
+      "contentMarkdown": "Usability heuristics are the principles of interaction design created by Jacob Nielsen. These principles are used in usability evaluation to identify any design issues related to user interface.",
+      "categoryIds": [
+        11
+      ]
+    },
+    {
+      "id": 79,
+      "slug": "most-popular-google-font-combinations",
+      "link": "https://uxhints.com/typography/most-popular-google-font-combinations/",
+      "date": "2018-10-12T03:54:25",
+      "modified": "2021-10-12T12:17:16",
+      "title": "10 Most Popular Google Font Combinations",
+      "excerpt": "Beautiful and elegant font pairings using Google Fonts.",
+      "contentMarkdown": "Beautiful and elegant font pairings using Google Fonts.",
+      "categoryIds": [
+        10
+      ]
+    }
+  ]
+}

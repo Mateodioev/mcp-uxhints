@@ -7,6 +7,7 @@ const REQUEST_TIMEOUT_MS = 15_000;
 const CATEGORY_FIELDS = "id,name,slug,count";
 const SUMMARY_FIELDS = "id,slug,link,date,modified,title,excerpt,categories";
 const FULL_FIELDS = "id,slug,link,date,modified,title,content,categories";
+const CATALOG_FIELDS = "id,slug,link,date,modified,title,excerpt,content,categories";
 
 /** Error raised for any failure while talking to the uxhints.com API. */
 export class UXHintsError extends Error {
@@ -90,6 +91,26 @@ export interface ListHintsOptions {
   perPage?: number;
 }
 
+// --- Catalog snapshot shapes (bundled snapshot and user cache files) ---
+
+export interface CatalogHint {
+  id: number;
+  slug: string;
+  link: string;
+  date: string;
+  modified: string;
+  title: string;
+  excerpt: string;
+  contentMarkdown: string;
+  categoryIds: number[];
+}
+
+export interface CatalogSnapshot {
+  fetchedAt: string;
+  categories: Category[];
+  hints: CatalogHint[];
+}
+
 /** Decode the HTML entities WordPress commonly emits (e.g. "Visual &amp; UI Design"), plus numeric refs. */
 function decodeEntities(text: string): string {
   const named: Record<string, string> = {
@@ -124,6 +145,13 @@ function decodeEntities(text: string): string {
 /** Remove WordPress block editor comments such as `<!-- wp:paragraph -->` and `<!-- /wp:list -->`. */
 function stripBlockComments(html: string): string {
   return html.replace(/<!--\s+\/?wp:[\s\S]*?-->/g, "");
+}
+
+/** Convert rendered WordPress HTML to plain text: strip tags first, then decode entities. */
+function htmlToPlainText(html: string): string {
+  return decodeEntities(html.replace(/<[^>]+>/g, " "))
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function parseCountHeader(value: string | null): number | null {
@@ -228,6 +256,36 @@ export class UXHintsClient {
     return this.getHintById(pick.id);
   }
 
+  /**
+   * Fetch the whole catalog (categories + every hint with full content) in as few
+   * requests as possible and return it as a cacheable snapshot: titles and excerpts
+   * as plain text, content pre-converted to Markdown, categories as numeric ids.
+   */
+  async fetchCatalog(): Promise<CatalogSnapshot> {
+    const categories = await this.listCategories();
+    const params = new URLSearchParams({
+      per_page: "100",
+      _fields: CATALOG_FIELDS,
+    });
+    const posts: WPPostFull[] = [];
+    let page = 1;
+    let totalPages = 1;
+    do {
+      params.set("page", String(page));
+      const { data, totalPages: reported } = await this.request<WPPostFull[]>(
+        `/posts?${params.toString()}`,
+      );
+      posts.push(...data);
+      totalPages = reported ?? 1;
+      page += 1;
+    } while (page <= totalPages);
+    return {
+      fetchedAt: new Date().toISOString(),
+      categories,
+      hints: posts.map((post) => this.toCatalogHint(post)),
+    };
+  }
+
   private async fetchPostsPage(
     path: string,
   ): Promise<Omit<HintPage, "page" | "perPage">> {
@@ -292,6 +350,20 @@ export class UXHintsClient {
       modified: post.modified,
       categories: this.categoryNames(post.categories),
       markdown: this.htmlToMarkdown(post.content.rendered),
+    };
+  }
+
+  private toCatalogHint(post: WPPostFull): CatalogHint {
+    return {
+      id: post.id,
+      slug: post.slug,
+      link: post.link,
+      date: post.date,
+      modified: post.modified,
+      title: htmlToPlainText(post.title.rendered),
+      excerpt: htmlToPlainText(post.excerpt.rendered),
+      contentMarkdown: this.htmlToMarkdown(post.content.rendered),
+      categoryIds: post.categories,
     };
   }
 

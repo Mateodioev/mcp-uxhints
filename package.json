@@ -8,7 +8,9 @@
     "mcp-uxhints": "build/index.js"
   },
   "files": [
-    "build"
+    "build",
+    "scripts",
+    "catalog.snapshot.json"
   ],
   "engines": {
     "node": ">=18"
@@ -16,6 +18,9 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
+    "sync:snapshot": "node scripts/build-snapshot.mjs",
+    "prepublishOnly": "npm run build && node scripts/build-snapshot.mjs --allow-stale",
+    "postinstall": "node scripts/postinstall.mjs || exit 0",
     "start": "node build/index.js"
   },
   "license": "MIT",

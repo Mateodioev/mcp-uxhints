@@ -3,14 +3,15 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import { getCatalog, refreshCatalog, type CatalogResult } from "./catalog.js";
 import {
-  UXHintsClient,
   UXHintsError,
+  type CatalogHint,
+  type CatalogSnapshot,
   type HintDetail,
   type HintPage,
+  type HintSummary,
 } from "./uxhints-client.js";
-
-const client = new UXHintsClient();
 
 const server = new McpServer(
   {
@@ -97,6 +98,66 @@ function notFoundResult(args: { id?: number; slug?: string }): ReturnType<typeof
   );
 }
 
+/** Stale-cache notice appended to successful tool output when the data is not fresh. */
+function withStaleNotice(text: string, result: CatalogResult): string {
+  if (!result.stale) return text;
+  return (
+    `${text}\n\nShowing cached data last refreshed at ${result.catalog.fetchedAt} ` +
+    "(offline or API unreachable)."
+  );
+}
+
+// --- Catalog-to-view-model helpers ---
+
+function categoryNamesById(catalog: CatalogSnapshot): Map<number, string> {
+  return new Map(catalog.categories.map((c) => [c.id, c.name]));
+}
+
+function toSummary(hint: CatalogHint, names: Map<number, string>): HintSummary {
+  return {
+    id: hint.id,
+    title: hint.title,
+    slug: hint.slug,
+    link: hint.link,
+    date: hint.date,
+    categories: hint.categoryIds.map((id) => names.get(id) ?? `category #${id}`),
+  };
+}
+
+function toDetail(hint: CatalogHint, names: Map<number, string>): HintDetail {
+  return {
+    ...toSummary(hint, names),
+    modified: hint.modified,
+    markdown: hint.contentMarkdown,
+  };
+}
+
+function paginate(
+  hints: CatalogHint[],
+  names: Map<number, string>,
+  page: number,
+  perPage: number,
+): HintPage {
+  const total = hints.length;
+  return {
+    hints: hints
+      .slice((page - 1) * perPage, page * perPage)
+      .map((hint) => toSummary(hint, names)),
+    page,
+    perPage,
+    total,
+    totalPages: Math.max(1, Math.ceil(total / perPage)),
+  };
+}
+
+/** Case-insensitive, diacritic-insensitive normalization for local search. */
+function normalizeForSearch(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
+}
+
 // --- Shared input schemas ---
 
 const paginationShape = {
@@ -135,6 +196,9 @@ const getHintSchema = z
     message: "Provide exactly one of: id, slug.",
   });
 
+const CACHE_NOTE =
+  "Results are served from a local catalog cache (default 24h TTL); call refresh_hint_catalog to force an update.";
+
 // --- Tool registrations ---
 
 server.registerTool(
@@ -142,11 +206,13 @@ server.registerTool(
   {
     title: "List categories",
     description:
-      "List the hint categories on uxhints.com with hint counts and the slugs to filter list_hints with.",
+      "List the hint categories on uxhints.com with hint counts and the slugs to filter list_hints with. " +
+      CACHE_NOTE,
   },
   async () => {
     try {
-      const categories = await client.listCategories();
+      const result = await getCatalog();
+      const categories = result.catalog.categories;
       if (categories.length === 0) {
         return textResult("No categories found on uxhints.com.");
       }
@@ -155,7 +221,10 @@ server.registerTool(
           `- **${c.name}** (slug: ${c.slug}) — ${c.count} hint${c.count === 1 ? "" : "s"}`,
       );
       return textResult(
-        `Categories on uxhints.com (${categories.length}):\n\n${lines.join("\n")}`,
+        withStaleNotice(
+          `Categories on uxhints.com (${categories.length}):\n\n${lines.join("\n")}`,
+          result,
+        ),
       );
     } catch (err) {
       return errorResult(err);
@@ -168,7 +237,8 @@ server.registerTool(
   {
     title: "List hints",
     description:
-      "List UX hints from uxhints.com (id, title, slug, link, date, categories), optionally filtered by a category slug from list_categories. Includes total/totalPages for pagination.",
+      "List UX hints from uxhints.com (id, title, slug, link, date, categories), optionally filtered by a category slug from list_categories. Includes total/totalPages for pagination. " +
+      CACHE_NOTE,
     inputSchema: {
       category: z
         .string()
@@ -180,15 +250,25 @@ server.registerTool(
   },
   async ({ category, page, per_page }) => {
     try {
-      const result = await client.listHints({
-        category,
-        page,
-        perPage: per_page,
-      });
+      const result = await getCatalog();
+      const names = categoryNamesById(result.catalog);
+      let hints = result.catalog.hints;
+      if (category !== undefined) {
+        const slug = category.trim().toLowerCase();
+        const found = result.catalog.categories.find((c) => c.slug === slug);
+        if (!found) {
+          throw new UXHintsError(
+            `Unknown category slug "${category}". Run list_categories to see the valid slugs.`,
+          );
+        }
+        hints = hints.filter((hint) => hint.categoryIds.includes(found.id));
+      }
       const context = category
         ? `category "${category}"`
         : "all categories";
-      return textResult(formatHintPage(result, context));
+      return textResult(
+        withStaleNotice(formatHintPage(paginate(hints, names, page, per_page), context), result),
+      );
     } catch (err) {
       return errorResult(err);
     }
@@ -200,7 +280,8 @@ server.registerTool(
   {
     title: "Search hints",
     description:
-      "Full-text search over uxhints.com hint titles and content (e.g. \"hick\", \"dark patterns\"). Same result shape and pagination as list_hints.",
+      "Local search over the cached uxhints.com catalog: case-insensitive and diacritic-insensitive substring matching over hint titles, excerpts, and full Markdown content. Title matches rank before content matches. Same result shape and pagination as list_hints. " +
+      CACHE_NOTE,
     inputSchema: {
       query: z.string().min(1).describe("Search term(s)."),
       ...paginationShape,
@@ -208,8 +289,28 @@ server.registerTool(
   },
   async ({ query, page, per_page }) => {
     try {
-      const result = await client.searchHints(query, page, per_page);
-      return textResult(formatHintPage(result, `search "${query}"`));
+      const trimmed = query.trim();
+      if (!trimmed) throw new UXHintsError("Search query must not be empty.");
+      const needle = normalizeForSearch(trimmed);
+      const result = await getCatalog();
+      const names = categoryNamesById(result.catalog);
+      const matches = result.catalog.hints
+        .map((hint) => ({
+          hint,
+          titleHit: normalizeForSearch(hint.title).includes(needle),
+          bodyHit:
+            normalizeForSearch(hint.excerpt).includes(needle) ||
+            normalizeForSearch(hint.contentMarkdown).includes(needle),
+        }))
+        .filter((match) => match.titleHit || match.bodyHit)
+        .sort((a, b) => Number(b.titleHit) - Number(a.titleHit))
+        .map((match) => match.hint);
+      return textResult(
+        withStaleNotice(
+          formatHintPage(paginate(matches, names, page, per_page), `search "${query}"`),
+          result,
+        ),
+      );
     } catch (err) {
       return errorResult(err);
     }
@@ -221,7 +322,8 @@ server.registerTool(
   {
     title: "Get a hint",
     description:
-      "Get one uxhints.com hint by id or slug (exactly one is required), with the full content converted from WordPress HTML to clean Markdown.",
+      "Get one uxhints.com hint by id or slug (exactly one is required), with the full content already converted from WordPress HTML to clean Markdown. " +
+      CACHE_NOTE,
     inputSchema: getHintShape,
   },
   async (args) => {
@@ -233,10 +335,15 @@ server.registerTool(
     }
     const { id, slug } = parsed.data;
     try {
+      const result = await getCatalog();
       const hint =
-        id !== undefined ? await client.getHintById(id) : await client.getHintBySlug(slug!);
+        id !== undefined
+          ? result.catalog.hints.find((h) => h.id === id)
+          : result.catalog.hints.find((h) => h.slug === slug);
       if (!hint) return notFoundResult({ id, slug });
-      return textResult(formatHintDetail(hint));
+      return textResult(
+        withStaleNotice(formatHintDetail(toDetail(hint, categoryNamesById(result.catalog))), result),
+      );
     } catch (err) {
       return errorResult(err);
     }
@@ -248,15 +355,39 @@ server.registerTool(
   {
     title: "Get a random hint",
     description:
-      "Get one random hint from uxhints.com, same shape as get_hint: full content converted to Markdown.",
+      "Get one random hint from uxhints.com, same shape as get_hint: full content as Markdown. " +
+      CACHE_NOTE,
   },
   async () => {
     try {
-      const hint = await client.getRandomHint();
-      if (!hint) {
+      const result = await getCatalog();
+      if (result.catalog.hints.length === 0) {
         return errorResult(new UXHintsError("The uxhints.com catalog is empty."));
       }
-      return textResult(formatHintDetail(hint));
+      const hint =
+        result.catalog.hints[Math.floor(Math.random() * result.catalog.hints.length)];
+      return textResult(
+        withStaleNotice(formatHintDetail(toDetail(hint, categoryNamesById(result.catalog))), result),
+      );
+    } catch (err) {
+      return errorResult(err);
+    }
+  },
+);
+
+server.registerTool(
+  "refresh_hint_catalog",
+  {
+    title: "Refresh hint catalog",
+    description:
+      "Force a live sync of the uxhints.com catalog and rewrite the local cache, bypassing the TTL. Returns the new hint/category counts and fetch timestamp. On failure the existing caches stay untouched.",
+  },
+  async () => {
+    try {
+      const snapshot = await refreshCatalog();
+      return textResult(
+        `Catalog refreshed: ${snapshot.hints.length} hints in ${snapshot.categories.length} categories, fetched at ${snapshot.fetchedAt}.`,
+      );
     } catch (err) {
       return errorResult(err);
     }
