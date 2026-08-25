@@ -1,6 +1,6 @@
 {
   "name": "mcp-uxhints",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server exposing the uxhints.com UX knowledge catalog (WordPress REST API) as MCP tools over stdio.",
   "type": "module",
   "main": "build/index.js",
