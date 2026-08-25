@@ -5,7 +5,7 @@
   "type": "module",
   "main": "build/index.js",
   "bin": {
-    "mcp-uxhints": "./build/index.js"
+    "mcp-uxhints": "build/index.js"
   },
   "files": [
     "build"
