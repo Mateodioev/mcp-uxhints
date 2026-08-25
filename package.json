@@ -1,0 +1,32 @@
+{
+  "name": "mcp-uxhints",
+  "version": "1.0.0",
+  "description": "MCP server exposing the uxhints.com UX knowledge catalog (WordPress REST API) as MCP tools over stdio.",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "mcp-uxhints": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node build/index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "turndown": "^7.2.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/turndown": "^5.0.5",
+    "typescript": "^5.7.0"
+  }
+}
