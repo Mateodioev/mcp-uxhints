@@ -2,16 +2,11 @@
 
 MCP (Model Context Protocol) server that exposes the [uxhints.com](https://uxhints.com) catalog of bite-sized UX and product-design hints as MCP tools over stdio. Content comes from the site's public WordPress REST API (converted to clean Markdown), served through a local cache so tool calls are instant and work offline.
 
-## Quick path
+## Install with npx (recommended)
 
-1. **Prerequisite:** Node.js 18 or newer.
-2. **Install and build:**
+**Prerequisite:** Node.js 18 or newer. No build step — npx downloads and runs the published package, and the bundled catalog snapshot lets the first tool call work with zero network.
 
-   ```bash
-   npm install && npm run build
-   ```
-
-3. **Register the server in your MCP client** (configs below) and restart the client.
+Register the server in your MCP client, then restart the client.
 
 ### OpenCode
 
@@ -22,7 +17,7 @@ Add to `opencode.json`:
   "mcp": {
     "mcp-uxhints": {
       "type": "local",
-      "command": ["node", "/absolute/path/mcp-uxhints/build/index.js"],
+      "command": ["npx", "-y", "mcp-uxhints"],
       "enabled": true
     }
   }
@@ -37,12 +32,29 @@ Add to `claude_desktop_config.json`:
 {
   "mcpServers": {
     "mcp-uxhints": {
-      "command": "node",
-      "args": ["/absolute/path/mcp-uxhints/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "mcp-uxhints"]
     }
   }
 }
 ```
+
+> **Note:** do not run `npx mcp-uxhints` from inside your own clone of this repository — npm resolves the local `package.json` and fails with `command not found`. Any other directory works.
+
+## Install from source (alternative)
+
+For development or pinning a local build:
+
+```bash
+git clone https://github.com/Mateodioev/mcp-uxhints.git
+cd mcp-uxhints
+npm install && npm run build
+```
+
+Then point your client at the built file instead of `npx`:
+
+- OpenCode: `"command": ["node", "/absolute/path/mcp-uxhints/build/index.js"]`
+- Claude Desktop: `"command": "node", "args": ["/absolute/path/mcp-uxhints/build/index.js"]`
 
 ## Tools
 
